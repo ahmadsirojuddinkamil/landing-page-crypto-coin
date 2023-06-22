@@ -7,12 +7,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Clean Blog | Post</title>
     @include('base.dashboard.css')
+    @livewireStyles
 </head>
 
 <body>
     @include('layouts.dashboard.sidebar')
     @include('layouts.dashboard.post.index.main')
     @include('base.dashboard.js')
+    @livewireScripts
 </body>
 
 </html>

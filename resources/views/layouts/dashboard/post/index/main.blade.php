@@ -70,7 +70,7 @@
         <div class="row mt-4">
             <div class="mb-lg-0 mb-4">
                 <div class="card ">
-                    <div class="card-header pb-0 p-3">
+                    {{-- <div class="card-header pb-0 p-3">
                         <div>
                             <a href="post/create" class="btn bg-gradient-primary">Create Post</a>
                             @if (session()->has('success'))
@@ -88,9 +88,11 @@
                                 </script>
                             @endif
                         </div>
-                    </div>
+                    </div> --}}
 
-                    <div class="table-responsive">
+                    @livewire('post.index-post')
+
+                    {{-- <div class="table-responsive">
                         <table class="table">
                             <thead>
                                 <tr>
@@ -204,7 +206,7 @@
                         <div class="ms-3">
                             {!! $getAllPost->links() !!}
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>

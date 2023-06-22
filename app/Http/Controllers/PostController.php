@@ -43,18 +43,18 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($uuid)
+    public function show($saveUuidFromRoute)
     {
-        $getDataPost = Post::where('uuid', $uuid)->first();
+        $getDataPost = Post::where('uuid', $saveUuidFromRoute)->first();
         return view('pages.dashboard.post.show', compact('getDataPost'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($uuid)
+    public function edit($saveUuidFromRoute)
     {
-        $getDataPost = Post::where('uuid', $uuid)->first();
+        $getDataPost = Post::where('uuid', $saveUuidFromRoute)->first();
         return view('pages.dashboard.post.edit', compact('getDataPost'));
     }
 
@@ -71,8 +71,10 @@ class PostController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Post $post)
+    public function destroy($saveUuidFromRoute)
     {
-        //
+        $findThePostToDelete = Post::where('uuid', $saveUuidFromRoute)->first();
+        Post::destroy($findThePostToDelete->id);
+        return redirect('/post');
     }
 }

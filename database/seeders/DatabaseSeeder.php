@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
 
         $faker = Faker::create('id_ID');
 
-        for ($i = 1; $i <= 10; $i++) {
+        for ($i = 1; $i <= 50; $i++) {
             $createdAt = $faker->dateTimeBetween('-5 years', 'now');
             $updatedAt = Carbon::instance($createdAt)->addDays(rand(1, 7));
 
