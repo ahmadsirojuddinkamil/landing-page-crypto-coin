@@ -16,8 +16,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $getAllPost = Post::latest()->paginate(6);
-        return view('pages.dashboard.post.index', compact('getAllPost'));
+        return view('pages.dashboard.post.index');
     }
 
     /**
@@ -37,7 +36,7 @@ class PostController extends Controller
         $validateData['user_id'] = Auth::id();
         $validateData['uuid'] = Uuid::uuid4()->toString();
         Post::create($validateData);
-        return redirect('post')->with('success', 'New post has been created!');
+        return redirect('post')->with('success', 'Post has been created!');
     }
 
     /**
@@ -65,16 +64,13 @@ class PostController extends Controller
     {
         $validateData = $request->validated();
         Post::where('uuid', $saveUuidFromRoute)->update($validateData);
-        return redirect('/post')->with('success', 'New post has been updated!');
+        return redirect('/post')->with('success', 'Post has been updated!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($saveUuidFromRoute)
+    public function destroy(Post $post)
     {
-        $findThePostToDelete = Post::where('uuid', $saveUuidFromRoute)->first();
-        Post::destroy($findThePostToDelete->id);
-        return redirect('/post');
     }
 }

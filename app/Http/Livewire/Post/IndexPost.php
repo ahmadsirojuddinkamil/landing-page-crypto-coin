@@ -4,9 +4,13 @@ namespace App\Http\Livewire\Post;
 
 use App\Models\Post;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class IndexPost extends Component
 {
+    use WithPagination;
+    protected $paginationTheme = 'bootstrap';
+
     public function render()
     {
         $getAllPost = Post::latest()->paginate(6);
