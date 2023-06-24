@@ -1,7 +1,16 @@
 <div class="table-responsive">
     <div class="card-header pb-0 p-3">
         <div>
-            <a href="post/create" class="btn bg-gradient-primary">Create Post</a>
+            <div class="d-flex">
+                <a href="post/create" class="btn bg-gradient-primary">Create Post</a>
+
+                <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+                    <div class="input-group">
+                        <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
+                        <input type="text" class="form-control" placeholder="Search User..." wire:model="search">
+                    </div>
+                </div>
+            </div>
 
             @if (session()->has('success'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -121,6 +130,10 @@
             @endforeach
         </tbody>
     </table>
+
+    {{-- <div class="mb-3">
+        <input type="text" wire:model="search" class="form-control" placeholder="Search...">
+    </div> --}}
 
     <div class="ms-3">
         {!! $getAllPost->links() !!}
