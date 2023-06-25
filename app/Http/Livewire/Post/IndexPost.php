@@ -3,8 +3,11 @@
 namespace App\Http\Livewire\Post;
 
 use App\Models\Post;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Spatie\Permission\Models\Role;
 
 class IndexPost extends Component
 {

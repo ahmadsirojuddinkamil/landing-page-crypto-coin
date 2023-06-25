@@ -5,18 +5,28 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
-use App\Models\User;
+use App\Services\UserService;
 use Illuminate\Support\Facades\Auth;
 use Ramsey\Uuid\Uuid;
 
 class PostController extends Controller
 {
+    protected $userService;
+
+    public function __construct(UserService $userService)
+    {
+        $this->userService = $userService;
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('pages.dashboard.post.index');
+        $getUserLogin = $this->userService->getUserLogin();
+        $getRoleAdmin = $this->userService->getRoleAdmin();
+
+        return view('pages.dashboard.post.index', compact('getUserLogin', 'getRoleAdmin'));
     }
 
     /**
@@ -24,7 +34,10 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('pages.dashboard.post.create');
+        $getUserLogin = $this->userService->getUserLogin();
+        $getRoleAdmin = $this->userService->getRoleAdmin();
+
+        return view('pages.dashboard.post.create', compact('getUserLogin', 'getRoleAdmin'));
     }
 
     /**
@@ -44,8 +57,11 @@ class PostController extends Controller
      */
     public function show($saveUuidFromRoute)
     {
+        $getUserLogin = $this->userService->getUserLogin();
+        $getRoleAdmin = $this->userService->getRoleAdmin();
         $getDataPost = Post::where('uuid', $saveUuidFromRoute)->first();
-        return view('pages.dashboard.post.show', compact('getDataPost'));
+
+        return view('pages.dashboard.post.show', compact('getDataPost', 'getUserLogin', 'getRoleAdmin'));
     }
 
     /**
@@ -53,8 +69,11 @@ class PostController extends Controller
      */
     public function edit($saveUuidFromRoute)
     {
+        $getUserLogin = $this->userService->getUserLogin();
+        $getRoleAdmin = $this->userService->getRoleAdmin();
         $getDataPost = Post::where('uuid', $saveUuidFromRoute)->first();
-        return view('pages.dashboard.post.edit', compact('getDataPost'));
+
+        return view('pages.dashboard.post.edit', compact('getDataPost', 'getUserLogin', 'getRoleAdmin'));
     }
 
     /**

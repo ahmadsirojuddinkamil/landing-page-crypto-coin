@@ -131,10 +131,6 @@
         </tbody>
     </table>
 
-    {{-- <div class="mb-3">
-        <input type="text" wire:model="search" class="form-control" placeholder="Search...">
-    </div> --}}
-
     <div class="ms-3">
         {!! $getAllPost->links() !!}
     </div>

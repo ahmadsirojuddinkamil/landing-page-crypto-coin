@@ -26,7 +26,11 @@
                 @endguest
 
                 @auth
-                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/dashboard">Dashboard</a></li>
+                    @if ($getUserLogin->hasRole($getRoleAdmin->name))
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/dashboard">Dashboard</a></li>
+                    @else
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/profile">Profile</a></li>
+                    @endif
                 @endauth
             </ul>
         </div>
