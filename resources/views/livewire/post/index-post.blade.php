@@ -66,7 +66,7 @@
                     </td>
 
                     <td>
-                        <h6 class="text-sm mb-0">{{ $post->title }}</h6>
+                        <h6 class="text-sm mb-0">{{ Str::limit($post->title, 30) }}</h6>
                     </td>
 
                     <td>

@@ -5,8 +5,8 @@
 
             @foreach ($getAllPost as $post)
                 <div class="post-preview">
-                    <a href="post.html">
-                        <h2 class="post-title">{{ $post->title }}</h2>
+                    <a href="/blog/{{ $post->uuid }}">
+                        <h2 class="post-title">{{ Str::limit($post->title, 30) }}</h2>
                         <h3 class="post-subtitle">{{ Str::limit($post->content, 100) }}</h3>
                     </a>
                     <p class="post-meta">

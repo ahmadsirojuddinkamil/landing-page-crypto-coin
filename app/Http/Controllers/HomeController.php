@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\User;
 use App\Services\UserService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Models\Role;
 
 class HomeController extends Controller
 {
@@ -17,6 +20,13 @@ class HomeController extends Controller
 
     public function index()
     {
+        $checkRoleAdminAlready = Role::where('name', 'admin')->first();
+        if (!$checkRoleAdminAlready) {
+            Role::create(['name' => 'admin']);
+            $findAndGetUserNow = Auth::user();
+            $findAndGetUserNow->assignRole('admin');
+        }
+
         $getUserLogin = $this->userService->getUserLogin();
         $getRoleAdmin = $this->userService->getRoleAdmin();
         $getAllPost = Post::latest()->paginate(5);
@@ -38,5 +48,14 @@ class HomeController extends Controller
         $getRoleAdmin = $this->userService->getRoleAdmin();
 
         return view('pages.blog.contact.index', compact('getUserLogin', 'getRoleAdmin'));
+    }
+
+    public function show($saveUuidFromRoute)
+    {
+        $getUserLogin = $this->userService->getUserLogin();
+        $getRoleAdmin = $this->userService->getRoleAdmin();
+        $findAndGetDataPost = Post::where('uuid', $saveUuidFromRoute)->first();
+
+        return view('pages.blog.home.show', compact('findAndGetDataPost', 'getUserLogin', 'getRoleAdmin'));
     }
 }
