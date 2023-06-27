@@ -8,8 +8,12 @@
         </div>
     </div>
 </article>
+@livewireStyles
+@livewire('commentator.index', ['getUuidFromComponentCall' => $findAndGetDataPost->uuid])
+{{-- @livewire('commentator.index') --}}
+@livewireScripts
 
-<section class="gradient-custom">
+{{-- <section class="gradient-custom">
     <div class="container my-5">
         <div class="row d-flex justify-content-center">
             <div class="col-md-12 col-lg-10 col-xl-7">
@@ -19,9 +23,6 @@
 
                         <div class="row">
                             <div class="col">
-                                {{-- @foreach ($findAndGetDataPost->comments as $comment)
-                                    <div>{{ $comment->content }}</div>
-                                @endforeach --}}
                                 <div class="d-flex flex-start">
                                     <img class="rounded-circle shadow-1-strong me-3"
                                         src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(10).webp" alt="avatar"
@@ -43,7 +44,7 @@
                                             </p>
                                         </div>
 
-                                        {{-- <div class="d-flex flex-start mt-4">
+                                        <div class="d-flex flex-start mt-4">
                                             <a class="me-3" href="#">
                                                 <img class="rounded-circle shadow-1-strong"
                                                     src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(11).webp"
@@ -84,7 +85,7 @@
                                                     </p>
                                                 </div>
                                             </div>
-                                        </div> --}}
+                                        </div>
 
 
                                     </div>
@@ -111,4 +112,4 @@
             </div>
         </div>
     </div>
-</section>
+</section> --}}

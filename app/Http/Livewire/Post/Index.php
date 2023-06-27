@@ -2,14 +2,11 @@
 
 namespace App\Http\Livewire\Post;
 
-use App\Models\Post;
-use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
-use Spatie\Permission\Models\Role;
+use App\Models\Post;
 
-class IndexPost extends Component
+class Index extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
@@ -24,7 +21,7 @@ class IndexPost extends Component
             ->latest()
             ->paginate(6);
 
-        return view('livewire.post.index-post', compact('getAllPost'));
+        return view('livewire.post.index', compact('getAllPost'));
     }
 
     public function deletePost($saveUuidFromWireClick)

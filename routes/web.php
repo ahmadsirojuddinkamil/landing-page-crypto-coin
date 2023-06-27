@@ -6,6 +6,10 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
+// Route::get('/', function () {
+//     return view('home');
+// });
+
 Route::controller(HomeController::class)->group(function () {
     Route::get('/', 'index');
     Route::get('/blog/about', 'about');

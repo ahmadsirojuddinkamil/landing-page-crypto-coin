@@ -15,6 +15,14 @@
     @include('layouts.blog.home.main')
     @include('layouts.blog.home.footer')
     @include('base.blog.js')
+    {{-- <div class="container">
+        <div class="row justify-content-center mt-3">
+            {{-- @livewire('blogs.blog') --}}
+    {{-- @livewire('example.example') --}}
+    {{-- @livewire('commentator.index') --}}
+    </div>
+    </div> --}}
+    @livewireScripts
 
 </body>
 

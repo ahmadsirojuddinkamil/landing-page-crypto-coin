@@ -67,7 +67,7 @@
         <div class="row mt-4">
             <div class="mb-lg-0 mb-4">
                 <div class="card ">
-                    @livewire('post.index-post')
+                    @livewire('post.index')
                 </div>
             </div>
         </div>
