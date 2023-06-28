@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\Comment;
+use App\Models\Like;
 use App\Models\Post;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
@@ -43,6 +44,12 @@ class DatabaseSeeder extends Seeder
             //     'content' => $faker->text(),
             //     'created_at' => $createdAt,
             //     'updated_at' => $updatedAt,
+            // ]);
+
+            // Like::create([
+            //     'user_id' => 1,
+            //     'post_id' => 1,
+            //     'status' => 1,
             // ]);
         }
     }

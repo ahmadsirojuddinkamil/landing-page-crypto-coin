@@ -97,21 +97,24 @@
                         </div>
 
                         {{-- input comment --}}
-                        <div class="card-footer py-3 border-0" style="background-color: #f8f9fa;">
-                            <form>
-                                <div class="form-group mb-3">
-                                    <textarea class="form-control @error('description') is-invalid @enderror" id="description"
-                                        wire:model="saveContentFromInput" placeholder="Message ..." rows="5"></textarea>
-                                    @error('description')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
+                        @if (auth()->check())
+                            <div class="card-footer py-3 border-0" style="background-color: #f8f9fa;">
+                                <form>
+                                    <div class="form-group mb-3">
+                                        <textarea class="form-control @error('description') is-invalid @enderror" id="description"
+                                            wire:model="saveContentFromInput" placeholder="Message ..." rows="5"></textarea>
+                                        @error('description')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
 
-                                <div class="d-grid gap-2">
-                                    <button wire:click.prevent="store()" class="btn btn-success btn-block">Send</button>
-                                </div>
-                            </form>
-                        </div>
+                                    <div class="d-grid gap-2">
+                                        <button wire:click.prevent="store()"
+                                            class="btn btn-success btn-block">Send</button>
+                                    </div>
+                                </form>
+                            </div>
+                        @endif
 
                     </div>
                 </div>

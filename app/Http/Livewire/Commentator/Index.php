@@ -27,7 +27,6 @@ class Index extends Component
     public function render()
     {
         $this->findAndGetAllDataComment = Comment::with('users')->where('post_id', $this->getIdRoomPost->id)->latest()->get();
-        // $this->findAndGetAllDataComment = Comment::where('post_id', $this->getIdRoomPost->id)->latest()->get();
         return view('livewire.commentator.index');
     }
 

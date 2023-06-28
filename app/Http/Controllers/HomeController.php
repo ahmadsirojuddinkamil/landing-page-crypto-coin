@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Like;
 use App\Models\Post;
 use App\Models\User;
 use App\Services\UserService;
@@ -57,5 +58,16 @@ class HomeController extends Controller
         $findAndGetDataPost = Post::where('uuid', $saveUuidFromRoute)->first();
 
         return view('pages.blog.home.show', compact('findAndGetDataPost', 'getUserLogin', 'getRoleAdmin'));
+    }
+
+    public function favorite()
+    {
+        $getUserLogin = $this->userService->getUserLogin();
+        $getRoleAdmin = $this->userService->getRoleAdmin();
+
+        $getIdUserNow = Auth::id();
+        $getFavoritePost = Like::with('posts')->where('user_id', $getIdUserNow)->latest()->paginate(5);
+
+        return view('pages.blog.favorite.index', compact('getUserLogin', 'getRoleAdmin', 'getFavoritePost'));
     }
 }

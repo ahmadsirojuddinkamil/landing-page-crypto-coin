@@ -11,8 +11,8 @@
 
 <body>
     @include('layouts.blog.home.header')
-    @include('layouts.blog.home.hero')
-    @include('layouts.blog.home.main')
+    @include('layouts.blog.favorite.hero')
+    @include('layouts.blog.favorite.main')
     @include('layouts.blog.home.footer')
     @include('base.blog.js')
     @livewireScripts

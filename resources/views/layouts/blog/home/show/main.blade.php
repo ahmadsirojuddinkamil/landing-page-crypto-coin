@@ -10,7 +10,6 @@
 </article>
 @livewireStyles
 @livewire('commentator.index', ['getUuidFromComponentCall' => $findAndGetDataPost->uuid])
-{{-- @livewire('commentator.index') --}}
 @livewireScripts
 
 {{-- <section class="gradient-custom">

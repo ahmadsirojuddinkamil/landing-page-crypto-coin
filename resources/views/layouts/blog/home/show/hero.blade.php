@@ -6,10 +6,11 @@
                 <div class="post-heading">
                     <h1>{{ $findAndGetDataPost->title }}</h1>
                     <h2 class="subheading">{{ Str::limit($findAndGetDataPost->content, 50) }}</h2>
-                    <span class="meta">
-                        Posted by
-                        <a href="#!">Ahmad Sirojuddin Kamil</a>
-                        on {{ $findAndGetDataPost->created_at->format('F d, Y') }}
+                    <span class="meta d-flex justify-content-between">
+                        Posted by Ahmad Sirojuddin Kamil on {{ $findAndGetDataPost->created_at->format('F d, Y') }}
+                        <div>
+                            @livewire('like.index', ['getUuidFromComponentCall' => $findAndGetDataPost->uuid])
+                        </div>
                     </span>
                 </div>
             </div>
