@@ -30,7 +30,7 @@ class HomeController extends Controller
 
         $getUserLogin = $this->userService->getUserLogin();
         $getRoleAdmin = $this->userService->getRoleAdmin();
-        $getAllPost = Post::latest()->paginate(5);
+        $getAllPost = Post::with('likes')->latest()->paginate(5);
 
         return view('pages.blog.home.index', compact('getAllPost', 'getUserLogin', 'getRoleAdmin'));
     }
@@ -41,14 +41,6 @@ class HomeController extends Controller
         $getRoleAdmin = $this->userService->getRoleAdmin();
 
         return view('pages.blog.about.index', compact('getUserLogin', 'getRoleAdmin'));
-    }
-
-    public function contact()
-    {
-        $getUserLogin = $this->userService->getUserLogin();
-        $getRoleAdmin = $this->userService->getRoleAdmin();
-
-        return view('pages.blog.contact.index', compact('getUserLogin', 'getRoleAdmin'));
     }
 
     public function show($saveUuidFromRoute)

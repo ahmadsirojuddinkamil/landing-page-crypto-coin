@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
+use App\Models\Like;
+use App\Models\Post;
+use App\Models\User;
 use App\Services\UserService;
 use Illuminate\Http\Request;
 
@@ -19,6 +23,18 @@ class DashboardController extends Controller
         $getUserLogin = $this->userService->getUserLogin();
         $getRoleAdmin = $this->userService->getRoleAdmin();
 
-        return view('pages.dashboard.index', compact('getUserLogin', 'getRoleAdmin'));
+        $getTotalPost = Post::count();
+        $getLatestPostDate = Post::max('created_at');
+
+        $getTotalComment = Comment::count();
+        $getLatestCommentDate = Comment::max('created_at');
+
+        $getTotalLike = Like::count();
+        $getLatestLikeDate = Like::max('created_at');
+
+        $getTotalUser = User::count();
+        $getLatestUserDate = User::max('created_at');
+
+        return view('pages.dashboard.index', compact('getUserLogin', 'getRoleAdmin', 'getTotalPost', 'getLatestPostDate', 'getTotalComment', 'getLatestCommentDate', 'getTotalLike', 'getLatestLikeDate', 'getTotalUser', 'getLatestUserDate'));
     }
 }
