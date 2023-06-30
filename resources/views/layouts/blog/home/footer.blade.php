@@ -30,7 +30,7 @@
                     </li>
                 </ul>
                 <br>
-                <div class="small text-center text-muted fst-italic">Copyright &copy; Clean Blog</div>
+                <div class="small text-center text-muted fst-italic">Copyright &copy; Ahmad Sirojuddin Kamil</div>
             </div>
         </div>
     </div>

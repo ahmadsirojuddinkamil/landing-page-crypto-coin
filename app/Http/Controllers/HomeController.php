@@ -6,7 +6,6 @@ use App\Models\Like;
 use App\Models\Post;
 use App\Models\User;
 use App\Services\UserService;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
 
@@ -21,18 +20,35 @@ class HomeController extends Controller
 
     public function index()
     {
+        // create role
         $checkRoleAdminAlready = Role::where('name', 'admin')->first();
         if (!$checkRoleAdminAlready) {
             Role::create(['name' => 'admin']);
-            $findAndGetUserNow = Auth::user();
-            $findAndGetUserNow->assignRole('admin');
         }
+
+        // check all users if already have admin role
+        $usersWithAdminRole = User::whereHas('roles', function ($query) {
+            $query->where('name', 'admin');
+        })->get();
+
+        // if (!$usersWithAdminRole->count() > 0 && Auth::user()) {
+        //     $findAndGetUserNow = Auth::user();
+        //     $findAndGetUserNow->assignRole('admin');
+        // }
 
         $getUserLogin = $this->userService->getUserLogin();
         $getRoleAdmin = $this->userService->getRoleAdmin();
         $getAllPost = Post::with('likes')->latest()->paginate(5);
 
-        return view('pages.blog.home.index', compact('getAllPost', 'getUserLogin', 'getRoleAdmin'));
+        return view('pages.blog.home.index', compact('getAllPost', 'getUserLogin', 'getRoleAdmin', 'usersWithAdminRole'));
+    }
+
+    public function createAdmin()
+    {
+        $findAndGetUserNow = Auth::user();
+        $findAndGetUserNow->assignRole('admin');
+
+        return redirect('/')->with('success', "Congratulations you become admin!");
     }
 
     public function about()
