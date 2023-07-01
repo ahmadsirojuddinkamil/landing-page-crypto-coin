@@ -9,13 +9,14 @@ use Livewire\Component;
 
 class Index extends Component
 {
+    // from mount
     public $findAndGetAllDataComment, $saveRoomUuidFromComponentCall, $getIdRoomPost;
 
+    // for function
     public $saveContentFromInput;
 
     protected $rules = [
-        'title' => 'required',
-        'description' => 'required'
+        'saveContentFromInput' => 'required|filled|string',
     ];
 
     public function mount($getUuidFromComponentCall)
@@ -32,6 +33,8 @@ class Index extends Component
 
     public function store()
     {
+        $this->validate();
+
         try {
             Comment::create([
                 'user_id' => Auth::id(),

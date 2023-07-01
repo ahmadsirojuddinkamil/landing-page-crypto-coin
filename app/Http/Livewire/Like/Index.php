@@ -9,8 +9,10 @@ use Livewire\Component;
 
 class Index extends Component
 {
+    // from mount
     public $saveRoomUuidFromComponentCall, $getIdRoomPost;
 
+    // for function
     public $statusLikeOrNot, $saveChangeLikeOrNot;
 
     public function mount($getUuidFromComponentCall)
@@ -32,7 +34,6 @@ class Index extends Component
                 'user_id' => Auth::id(),
                 'post_id' => $this->getIdRoomPost->id,
                 'status' => 1,
-                // 'status' => $this->saveChangeLikeOrNot,
             ]);
             session()->flash('success', 'Like Created Successfully!!');
         } catch (\Exception $ex) {
