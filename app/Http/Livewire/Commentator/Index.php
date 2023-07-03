@@ -2,8 +2,7 @@
 
 namespace App\Http\Livewire\Commentator;
 
-use App\Models\Comment;
-use App\Models\Post;
+use App\Models\{Comment, Post};
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 

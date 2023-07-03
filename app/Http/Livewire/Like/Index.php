@@ -2,8 +2,7 @@
 
 namespace App\Http\Livewire\Like;
 
-use App\Models\Like;
-use App\Models\Post;
+use App\Models\{Like, Post};
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 

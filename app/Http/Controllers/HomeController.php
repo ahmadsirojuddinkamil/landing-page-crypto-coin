@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Like;
-use App\Models\Post;
-use App\Models\User;
+use App\Models\{Like, Post, User};
 use App\Services\UserService;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
@@ -20,27 +18,26 @@ class HomeController extends Controller
 
     public function index()
     {
-        // create role
-        $checkRoleAdminAlready = Role::where('name', 'admin')->first();
-        if (!$checkRoleAdminAlready) {
-            Role::create(['name' => 'admin']);
-        }
+        $this->createRoleAdmin();
 
         // check all users if already have admin role
         $usersWithAdminRole = User::whereHas('roles', function ($query) {
             $query->where('name', 'admin');
-        })->get();
-
-        // if (!$usersWithAdminRole->count() > 0 && Auth::user()) {
-        //     $findAndGetUserNow = Auth::user();
-        //     $findAndGetUserNow->assignRole('admin');
-        // }
+        })->pluck('id');
 
         $getUserLogin = $this->userService->getUserLogin();
         $getRoleAdmin = $this->userService->getRoleAdmin();
         $getAllPost = Post::with('likes')->latest()->paginate(5);
 
         return view('pages.blog.home.index', compact('getAllPost', 'getUserLogin', 'getRoleAdmin', 'usersWithAdminRole'));
+    }
+
+    public function createRoleAdmin()
+    {
+        $checkRoleAdminAlready = Role::where('name', 'admin')->first();
+        if (!$checkRoleAdminAlready) {
+            Role::create(['name' => 'admin']);
+        }
     }
 
     public function createAdmin()

@@ -2,8 +2,7 @@
 
 namespace App\Http\Livewire\Post;
 
-use Livewire\Component;
-use Livewire\WithPagination;
+use Livewire\{Component, WithPagination};
 use App\Models\Post;
 
 class Index extends Component

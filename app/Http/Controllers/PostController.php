@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
-use App\Http\Requests\StorePostRequest;
-use App\Http\Requests\UpdatePostRequest;
+use App\Http\Requests\{StorePostRequest, UpdatePostRequest};
 use App\Services\UserService;
 use Illuminate\Support\Facades\Auth;
 use Ramsey\Uuid\Uuid;

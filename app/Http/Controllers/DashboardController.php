@@ -2,12 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Comment;
-use App\Models\Like;
-use App\Models\Post;
-use App\Models\User;
+use App\Models\{Comment, Like, Post, User};
 use App\Services\UserService;
-use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
