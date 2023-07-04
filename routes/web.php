@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::controller(HomeController::class)->group(function () {
     Route::get('/', 'index');
-    Route::get('/createAdmin', 'createAdmin');
+    Route::post('/assignRoleAdmin', 'assignRoleAdmin');
     Route::get('/blog/favorite', 'favorite');
     Route::get('/blog/about', 'about');
     Route::get('/blog/{uuid}', 'show');

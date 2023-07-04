@@ -40,7 +40,7 @@ class HomeController extends Controller
         }
     }
 
-    public function createAdmin()
+    public function assignRoleAdmin()
     {
         $findAndGetUserNow = Auth::user();
         $findAndGetUserNow->assignRole('admin');
@@ -58,20 +58,20 @@ class HomeController extends Controller
 
     public function show($saveUuidFromRoute)
     {
+        $findAndGetDataPost = Post::where('uuid', $saveUuidFromRoute)->first();
         $getUserLogin = $this->userService->getUserLogin();
         $getRoleAdmin = $this->userService->getRoleAdmin();
-        $findAndGetDataPost = Post::where('uuid', $saveUuidFromRoute)->first();
 
         return view('pages.blog.home.show', compact('findAndGetDataPost', 'getUserLogin', 'getRoleAdmin'));
     }
 
     public function favorite()
     {
-        $getUserLogin = $this->userService->getUserLogin();
-        $getRoleAdmin = $this->userService->getRoleAdmin();
-
         $getIdUserNow = Auth::id();
         $getFavoritePost = Like::with('posts')->where('user_id', $getIdUserNow)->latest()->paginate(5);
+
+        $getUserLogin = $this->userService->getUserLogin();
+        $getRoleAdmin = $this->userService->getRoleAdmin();
 
         return view('pages.blog.favorite.index', compact('getUserLogin', 'getRoleAdmin', 'getFavoritePost'));
     }

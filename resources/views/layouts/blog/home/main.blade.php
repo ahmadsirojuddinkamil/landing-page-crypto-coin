@@ -37,7 +37,7 @@
                             <div class="modal-footer">
                                 <button type="button" class="btn bg-gradient-secondary"
                                     data-bs-dismiss="modal">No</button>
-                                <a href="/createAdmin" class="btn bg-gradient-primary">Ya!</a>
+                                <a href="/assignRoleAdmin" class="btn bg-gradient-primary">Ya!</a>
                             </div>
 
                         </div>
