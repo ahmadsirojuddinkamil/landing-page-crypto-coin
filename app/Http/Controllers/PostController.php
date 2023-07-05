@@ -56,9 +56,10 @@ class PostController extends Controller
      */
     public function show($saveUuidFromRoute)
     {
+        $getDataPost = Post::where('uuid', $saveUuidFromRoute)->first();
+
         $getUserLogin = $this->userService->getUserLogin();
         $getRoleAdmin = $this->userService->getRoleAdmin();
-        $getDataPost = Post::where('uuid', $saveUuidFromRoute)->first();
 
         return view('pages.dashboard.post.show', compact('getDataPost', 'getUserLogin', 'getRoleAdmin'));
     }
@@ -68,9 +69,10 @@ class PostController extends Controller
      */
     public function edit($saveUuidFromRoute)
     {
+        $getDataPost = Post::where('uuid', $saveUuidFromRoute)->first();
+
         $getUserLogin = $this->userService->getUserLogin();
         $getRoleAdmin = $this->userService->getRoleAdmin();
-        $getDataPost = Post::where('uuid', $saveUuidFromRoute)->first();
 
         return view('pages.dashboard.post.edit', compact('getDataPost', 'getUserLogin', 'getRoleAdmin'));
     }

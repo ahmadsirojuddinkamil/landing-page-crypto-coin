@@ -9,7 +9,6 @@ use App\Models\Like;
 use App\Models\Post;
 use App\Models\User;
 use App\Services\UserService;
-use Faker\Core\Uuid;
 use Mockery;
 use Spatie\Permission\Models\Role;
 use Tests\TestCase;
@@ -76,6 +75,7 @@ class HomeControllerTest extends TestCase
     {
         $user = User::factory()->create();
         $user_id = $user->id;
+
         $dummyDataPost = [
             'user_id' => $user_id,
             'uuid' => '56906dee-4626-4b61-af28-04e030968614',
@@ -83,6 +83,7 @@ class HomeControllerTest extends TestCase
             'content' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
         ];
         Post::factory()->create($dummyDataPost);
+
         $response = $this->get('/blog/' . $dummyDataPost['uuid']);
         $response->assertStatus(200);
         $response->assertViewIs('pages.blog.home.show');
