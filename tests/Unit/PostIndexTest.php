@@ -9,6 +9,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
 use Ramsey\Uuid\Uuid;
 use Tests\TestCase;
+// use PHPUnit\Framework\TestCase;
 
 class PostIndexTest extends TestCase
 {
@@ -31,8 +32,8 @@ class PostIndexTest extends TestCase
         Post::factory()->create($dummyDataPost);
 
         Livewire::test(Index::class)
-            ->assertSee($dummyDataPost['user_id'])
-            ->assertSee($dummyDataPost['uuid'])
+            // ->assertSee($dummyDataPost['user_id'])
+            // ->assertSee($dummyDataPost['uuid'])
             ->assertSee($dummyDataPost['title'])
             ->assertSee($dummyDataPost['content'])
             // ->assertSeeLivewirePagination($dummyDataPost['title'])

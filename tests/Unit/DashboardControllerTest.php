@@ -8,12 +8,15 @@ use App\Models\Like;
 use App\Models\Post;
 use App\Models\User;
 use App\Services\UserService;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 // use PHPUnit\Framework\TestCase;
 use Tests\TestCase;
 use Spatie\Permission\Models\Role;
 
 class DashboardControllerTest extends TestCase
 {
+    use RefreshDatabase;
+
     public function test_example(): void
     {
         $this->assertTrue(true);

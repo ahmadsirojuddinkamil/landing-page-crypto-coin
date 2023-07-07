@@ -12,14 +12,19 @@ class UserServiceTest extends TestCase
 {
     use RefreshDatabase;
 
-    // public function test_example(): void
-    // {
-    //     $this->assertTrue(true);
-    // }
+    public function test_example(): void
+    {
+        $this->assertTrue(true);
+    }
 
     public function testGetRoleAdminReturnsAdminRole()
     {
-        $adminRole = Role::create(['name' => 'admin']);
+        $adminRole = Role::where('name', 'admin')->first();
+
+        if (!$adminRole) {
+            $adminRole = Role::create(['name' => 'admin']);
+        }
+
         $userService = new UserService();
         $roleAdmin = $userService->getRoleAdmin();
 
@@ -30,8 +35,12 @@ class UserServiceTest extends TestCase
 
     public function testCheckAndAssignAdminRole()
     {
+        $adminRole = Role::where('name', 'admin')->first();
+        if (!$adminRole) {
+            $adminRole = Role::create(['name' => 'admin']);
+        }
+
         $user = User::factory()->create();
-        $adminRole = Role::create(['name' => 'admin']);
         $user->assignRole($adminRole);
         $userService = new UserService();
         $userService->checkAndAssignAdminRole();
