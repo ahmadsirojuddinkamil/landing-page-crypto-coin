@@ -23,6 +23,7 @@ class PostIndexTest extends TestCase
     public function testRenderAndGetListPost()
     {
         $user = User::factory()->create();
+
         $dummyDataPost = [
             'user_id' => $user->id,
             'uuid' => '89f56154-8361-4467-b644-149b948362b8',
@@ -32,8 +33,6 @@ class PostIndexTest extends TestCase
         Post::factory()->create($dummyDataPost);
 
         Livewire::test(Index::class)
-            // ->assertSee($dummyDataPost['user_id'])
-            // ->assertSee($dummyDataPost['uuid'])
             ->assertSee($dummyDataPost['title'])
             ->assertSee($dummyDataPost['content'])
             // ->assertSeeLivewirePagination($dummyDataPost['title'])
